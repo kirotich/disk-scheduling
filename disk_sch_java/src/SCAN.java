@@ -27,7 +27,7 @@ public class SCAN {
         System.out.println("Enter head position");
         head = Integer.parseInt(input.nextLine());
 
-        System.out.println("input elements in disk queue");
+        System.out.println("Input elements in disk queue");
         for(int i=0; i<qSize; i++){
             queue[i] = Integer.parseInt(input.nextLine());
         }
