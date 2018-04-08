@@ -16,7 +16,7 @@ int main() {
   scanf("%d", &q_size);
 
   printf("%s\n", "Enter queue elements");
-  for(int i=0; i<=q_size; i++){
+  for(int i=0; i<q_size; i++){
     scanf("%d",&queue[i]);
   }
 
@@ -24,7 +24,7 @@ int main() {
   scanf("%d", &head);
 
   //get distance from head of elems in queue
-  for(i=1; i<q_size; i++){
+  for(int i=1; i<q_size; i++){
     queue2[i] = abs(head-queue[i]);
   }
 
@@ -45,7 +45,7 @@ int main() {
 
   }
 
-  for(int i=1; i<q_size-1; i++){
+  for(int i=1; i<q_size; i++){
     seek = seek+abs(head-queue[i]);
     head = queue[i];
   }
@@ -53,6 +53,6 @@ int main() {
   printf("\nTotal seek time is %d\t",seek);
   avg = seek/(float)q_size;
   printf("\nAverage seek time is %f\t", avg);
-  
+
   return 0;
 }
