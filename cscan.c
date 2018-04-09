@@ -21,7 +21,7 @@ int main(){
   scanf("%d", &head);
 
   printf("%s\n","Enter disk positions to be read");
-  for(i=1; i<=q_size; i++) {
+  for(i=0; i<q_size; i++) {
 
     scanf("%d", &temp);
       if(temp >= head){
@@ -35,7 +35,7 @@ int main(){
   //sort both arrays
   for(i=0; i<temp1-1; i++){
     for(j=i+1; j<temp1; j++){
-        if(queue1[i] > queue[j]){
+        if(queue1[i] > queue1[j]){
           temp = queue1[i];
           queue1[i] = queue1[j];
           queue1[j] = temp;
@@ -45,7 +45,7 @@ int main(){
 
   for(i=0; i<temp2-1; i++){
     for(j=i+1; j<temp2; j++){
-      if(queue2[i]>queue[j]){
+      if(queue2[i]>queue2[j]){
           temp = queue2[i];
           queue2[i] = queue2[j];
           queue2[j] = temp;
@@ -73,6 +73,7 @@ int main(){
 
   }
 
+  //seek = seek - max; //subtract seek time back to zero
   printf("Total seek time is %d\n", seek);
   avg = seek/(float)q_size;
   printf("Average seek time is %f\n", avg);
