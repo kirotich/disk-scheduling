@@ -69,7 +69,7 @@ int main(){
   }
 
   sum  = head + max;
-  printf("\nmovement of total cylinders %d\n",sum);
+  printf("\nmovement of total cylinders %d\",sum);
 
   return 0;
 }
