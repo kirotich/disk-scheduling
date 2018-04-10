@@ -1,14 +1,15 @@
 /*
 C-LOOK Algorithm
-- Scans towards the nearest end and works it way to the last request in that direction
-- Jumps back to the furthest request on the other end.
+  - Scans towards the nearest end and works it way to the last request in that direction
+  - Jumps back to the furthest request on the other end.
 */
-
-
 
 
 #include <stdio.h>
 #include <stdlib.h>
+
+#define LOW 0
+#define HIGH 199
 
 int main(){
   int queue[20], head, q_size, i,j, seek=0, diff, max, min, range, temp, queue1[20], queue2[20], temp1=0, temp2=0;
@@ -57,17 +58,34 @@ int main(){
     }
   }
 
-  for(i=1,j=0; j<temp1; i++,j++){
-    queue[i] = queue1[j];
+  if(abs(head-LOW) <= abs(head-HIGH)){
+
+    for(i=1,j=temp2-1; j>=0; i++,j--){
+        queue[i] = queue2[j];
+    }
+
+    queue[i] = LOW;
+    queue[i+1] = HIGH;
+
+    for(i=temp2+3,j=temp1-1; j>=0; i++,j--){
+        queue[i] = queue1[j];
+    }
+
+  } else {
+
+    for(i=1,j=0; j<temp1; i++,j++){
+        queue[i] = queue1[j];
+    }
+
+    queue[i] = HIGH;
+    queue[i+1] = LOW;
+
+    for(i=temp1+3,j=0; j<temp2; i++,j++){
+        queue[i] = queue2[j];
+    }
+
+
   }
-
-  max = queue[temp1];
-  min = queue2[0];
-
-  for(i=temp1+1, j=0; j<temp2; i++, j++){
-    queue[i] = queue2[j];
-  }
-
   queue[0] = head;
 
   for(j=0; j<q_size; j++){
@@ -76,8 +94,9 @@ int main(){
     printf("Disk head moves from %d to %d with seek %d\n",queue[j],queue[j+1],diff);
 
   }
-  range = max - min;
-  printf("Range is %d", range);
+
+  //range = max - min;
+  //printf("Range is %d", range);
   //seek =  seek - (max - min);
 
   printf("Total seek time is %d\n", seek);
