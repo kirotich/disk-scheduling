@@ -12,16 +12,15 @@ until the process comes back down or moves back up.
 #include <stdio.h>
 #include <stdlib.h>
 
-//quick sort function
-int cmpfunc (const void * a, const void * b) {
-  return ( *(int*)a - *(int*)b );
-}
+#define LOW 0
+#define HIGH 199
 
 
 int main(){
   int queue[20];
   int head, max, q_size, temp, sum;
   int dloc; //location of disk (head) arr
+
 
   printf("%s\t", "Input no of disk locations");
   scanf("%d", &q_size);
@@ -51,22 +50,35 @@ int main(){
   max = queue[q_size-1];
 
   //locate head in the queue
-  for(int i=0; i<q_size;i++){
+  for(int i=0; i<q_size; i++){
     if(head == queue[i]){
       dloc = i;
       break;
     }
   }
 
-  for(int j=dloc; j>=0; j--){
-    printf("%d -->",queue[j]);
+  if(abs(head-LOW) <= abs(head-HIGH)){
+
+      for(int j=dloc; j>=0; j--){
+        printf("%d --> ",queue[j]);
+      }
+      for(int j=dloc+1; j<q_size; j++){
+        printf("%d --> ",queue[j]);
+      }
+
+      } else {
+
+      for(int j=dloc+1; j<q_size; j++){
+          printf("%d --> ",queue[j]);
+      }
+      for(int j=dloc; j>=0; j--){
+          printf("%d --> ",queue[j]);
+      }
+
   }
 
-  printf("0 -->");
 
-  for(int j=dloc+1; j<q_size; j++){
-    printf("%d -->",queue[j]);
-  }
+
 
   sum  = head + max;
   printf("\nmovement of total cylinders %d", sum);
