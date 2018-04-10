@@ -24,7 +24,7 @@ int main() {
   scanf("%d", &head);
 
   //get distance from head of elems in queue
-  for(int i=1; i<q_size; i++){
+  for(int i=0; i<q_size; i++){
     queue2[i] = abs(head-queue[i]);
   }
 

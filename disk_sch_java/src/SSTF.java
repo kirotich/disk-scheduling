@@ -26,7 +26,7 @@ public class SSTF {
         System.out.println("Enter initial head position");
         head = Integer.parseInt(input.nextLine());
 
-        for(int i=1; i<qSize; i++){
+        for(int i=0; i<qSize; i++){
             queue2[i] = Math.abs(head-queue[i]);
         }
 
