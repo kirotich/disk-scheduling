@@ -7,12 +7,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define HIGH 199
+#define LOW 0
+
 int main(){
   int queue[20], q_size, head, i,j, seek=0, diff, max, temp, queue1[20], queue2[20], temp1=0, temp2=0;
   float avg;
-
-  printf("%s\t", "Enter max range of disk");
-  scanf("%d", &max);
 
   printf("%s\t", "Input no of disk locations");
   scanf("%d", &q_size);
@@ -53,16 +53,33 @@ int main(){
     }
   }
 
-  for(i=1,j=0; j<temp1; i++,j++){
-      queue[i] = queue1[j];
-  }
+  //calculate closest edge
+  if(abs(head-LOW) >= abs(head-HIGH)){
 
-  queue[i] = max;
-  queue[i+1] = 0;
+      for(i=1,j=0; j<temp1; i++,j++){
+          queue[i] = queue1[j];
+      }
 
-  for(i=temp1+3, j=0; j<temp2; i++, j++){
-      queue[i] = queue2[j];
-  }
+          queue[i] = HIGH;
+          queue[i+1] = 0;
+
+      for(i=temp1+3, j=0; j<temp2; i++, j++){
+          queue[i] = queue2[j];
+      }
+
+  } else {
+
+      for(i=1,j=temp2-1; j>=0; i++,j--){
+          queue[i] = queue2[j];
+      }
+
+          queue[i] = LOW;
+          queue[i+1] = HIGH;
+
+      for(i=temp2+3, j=temp1-1; j>=0; i++, j--){
+          queue[i] = queue1[j];
+      }
+}
 
   queue[0] = head;
 
