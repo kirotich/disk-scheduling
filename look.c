@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define LOW 0
+#define HIGH 199
 
 int main(){
   int queue[20], head, q_size, i,j, seek=0, diff, max, temp, queue1[20], queue2[20], temp1=0, temp2=0;
@@ -55,12 +57,26 @@ int main(){
     }
   }
 
-  for(i=1,j=0; j<temp1; i++,j++){
-       queue[i] = queue1[j];
-  }
+  if(abs(head-LOW) >= abs(head-HIGH)){
 
-  for(i=temp1+1, j=0; j<temp2; i++, j++){
-      queue[i] = queue2[j];
+      for(i=1,j=0; j<temp1; i++,j++){
+          queue[i] = queue1[j];
+      }
+
+      for(i=temp1+1, j=0; j<temp2; i++, j++){
+          queue[i] = queue2[j];
+      }
+
+  } else {
+
+      for(i=1,j=0; j<temp2; i++,j++){
+          queue[i] = queue2[j];
+      }
+
+      for(i=temp2+1, j=0; j<temp1; i++, j++){
+          queue[i] = queue1[j];
+      }
+
   }
 
   queue[0] = head;
