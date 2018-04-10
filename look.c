@@ -1,3 +1,10 @@
+/*
+  LOOK Algorithm
+  - Heads move in only one direction until there are no
+    more requests in that direction, then the direction
+    is reversed.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
